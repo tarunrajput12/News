@@ -9,10 +9,10 @@ export class News extends Component {
         {/* First Row */}
         <div className="row">
           <div className="col-4">
-            <NewsItem title="News" description="This is first container"/> 
+            <NewsItem title="News" description="Github Actions"/> 
           </div>
           <div className="col-4">
-            <NewsItem title="News" description="This is first container"/> 
+            <NewsItem title="News" description="gh-pages"/> 
           </div>
           <div className="col-4">
             <NewsItem title="News" description="This is first container"/> 
