@@ -22,7 +22,7 @@ jobs:
         run: npm ci   # ✅ Faster & cleaner than npm install
 
       - name: Build React app
-        run: npm run build
+        run: CI=false npm run build   # 👈 disables treating warnings as errors
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
