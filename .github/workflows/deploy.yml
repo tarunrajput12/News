@@ -1,0 +1,35 @@
+name: Deploy React App (CRA)
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write   # ✅ allow pushing to gh-pages branch
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20   # ✅ Use Node 20 (LTS) for CRA stability
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci   # ✅ Faster & cleaner than npm install
+
+      - name: Build React app
+        run: CI=false npm run build   # 👈 disables treating warnings as errors
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages   # ✅ force deploy to gh-pages branch
+          publish_dir: ./build
